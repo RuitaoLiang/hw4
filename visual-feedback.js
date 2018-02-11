@@ -38,12 +38,17 @@ function setup() {
 }
 
 function draw() {
-  if (playing) {
-    background(0, 255, 255);
-  } else {
-    background(255, 0, 255);
+  background(255);
+  fill(120);
+  if (playingA) {
+    rect(0, 0, width/4, height);
+	} else if (playingS) {
+		rect(width/4, 0, width/4, height);
+	} else if (playingD) {
+		rect(width/2, 0, width/4, height);	
+		} else if (playingF) {
+		rect(width*0.75, 0, width/4, height);
   }
-  text('click here,\nthen press A/S/D/F\n keys to play', width / 2, 40);
 }
 
 function keyPressed() {
@@ -86,19 +91,5 @@ function keyReleased() {
   }
   if (osc) {
     osc.amp(0, 0.5);
-  }
-}
-
-function draw() {
-  background(255);
-  fill(120);
-  if (playingA) {
-    rect(0, 0, width/4, height);
-	} else if (playingS) {
-		rect(width/4, 0, width/4, height);
-	} else if (playingD) {
-		rect(width/2, 0, width/4, height);	
-		} else if (playingF) {
-		rect(width*0.75, 0, width/4, height);
   }
 }
