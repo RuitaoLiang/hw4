@@ -28,10 +28,10 @@ function playMusic(earthquakes) {
 function draw() {
 	var earthquakeMag = earthquakes.features[0].properties.mag;
   if (earthquakeMag*100 >=100) {
-    background(0, 255, 255);
+    background('rgb(0,255,0)');
 		fill(255, 204, 0);
-	rect(20, 20, 60, 60);
-  } else if (earthquakeMag*100 <=50) {
+	ellipse(56, 46, 55, 55);
+  } else if (earthquakeMag*100 <=100) {
     background(255, 0, 255);
 		fill(51);
 	rect(20, 20, 60, 60);
