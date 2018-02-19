@@ -44,14 +44,25 @@ function draw() {
     var circle = circles[index];
 
   if (earthquakeMag*100 >=100) {
-    fill(circle.c);
-  ellipse(circle.x, circle.y, circle.d);
+   fill(circle.c);
+  //ellipse(mouseX, circle.d, pmouseX, pmouseY);
+		if (mouseIsPressed) {
+    if (mouseButton === LEFT) {
+      ellipse(circle.x, mouseY, circle.d, circle.d);
+    }
+    if (mouseButton === RIGHT) {
+      rect(mouseX, circle.d, pmouseX, pmouseY);
+    }
+    if (mouseButton === CENTER) {
+      triangle(mouseX, circle.x, circle.d, circle.y, pmouseX, pmouseY);
+    }
+  }
   } else if (earthquakeMag*100 <=100) {
     background(255, 0, 255);
 		fill(circle.c);
-	rect(circle.x, circle.y, circle.d, circle.d);
+	rect(circle.x, mouseY, circle.d, circle.d);
 	}
-		//if (random() < 0.001) {
+	}
 
     //circle.d = random(1, 40);
  // }
@@ -60,12 +71,11 @@ function draw() {
  // if (random() < 0.002) {
 
    // circle.d = random(1, 40);
-  }
+  
 }
 
 function mousePressed() {
 	var earthquakeMag = earthquakes.features[0].properties.mag;
-	print(earthquakeMag*100);
   playMusic(earthquakes);
   if (osc) {
     osc.amp(0.5, 0.1);
