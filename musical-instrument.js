@@ -1,6 +1,7 @@
 var osc;
 var playing = false;
 var earthquakes;
+var circles = [];
 
 function preload() {
   // Get the most recent earthquake in the database
@@ -11,9 +12,20 @@ function preload() {
 }
 
 function setup() {
-  noLoop();
+   createCanvas(400, 400);
+  	colorMode(HSB)
+	for (var index = 0; index < 100; index = index + 1) {
+    // new "circle" object, with x, y, xd and yd properties:
+    circles[index] = {
+     x: random(width/4,width),
+      y: random(height/4,height),
+		 	d: random(3,40),
+      xd: random(-2, 2),
+      yd: random(-2, 2),
+      c: color(random(255), random(255), random(255))
 }
-
+	}
+}
 
 function playMusic(earthquakes) {
 	var earthquakeMag = earthquakes.features[0].properties.mag;
@@ -27,14 +39,27 @@ function playMusic(earthquakes) {
 
 function draw() {
 	var earthquakeMag = earthquakes.features[0].properties.mag;
+	for (var index = 0; index < 100; index = index + 1) {
+    // get circle object
+    var circle = circles[index];
+
   if (earthquakeMag*100 >=100) {
-    background('rgb(0,255,0)');
-		fill(255, 204, 0);
-	ellipse(56, 46, 55, 55);
+    fill(circle.c);
+  ellipse(circle.x, circle.y, circle.d);
   } else if (earthquakeMag*100 <=100) {
     background(255, 0, 255);
-		fill(51);
-	rect(20, 20, 60, 60);
+		fill(circle.c);
+	rect(circle.x, circle.y, circle.d, circle.d);
+	}
+		//if (random() < 0.001) {
+
+    //circle.d = random(1, 40);
+ // }
+  
+
+ // if (random() < 0.002) {
+
+   // circle.d = random(1, 40);
   }
 }
 
@@ -54,3 +79,4 @@ function mouseReleased() {
     playing = false;
   }
 }
+//}
