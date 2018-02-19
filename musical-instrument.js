@@ -19,10 +19,8 @@ function setup() {
     circles[index] = {
      x: random(width/4,width),
       y: random(height/4,height),
-		 	d: random(3,40),
-      xd: random(-2, 2),
-      yd: random(-2, 2),
-      c: color(random(255), random(255), random(255))
+		 	d: random(3,400),
+      c: color(random(360), random(360), random(255))
 }
 	}
 }
@@ -44,18 +42,11 @@ function draw() {
     var circle = circles[index];
 
   if (earthquakeMag*100 >=100) {
-   fill(circle.c);
+   
   //ellipse(mouseX, circle.d, pmouseX, pmouseY);
 		if (mouseIsPressed) {
-    if (mouseButton === LEFT) {
-      ellipse(circle.x, mouseY, circle.d, circle.d);
-    }
-    if (mouseButton === RIGHT) {
-      rect(mouseX, circle.d, pmouseX, pmouseY);
-    }
-    if (mouseButton === CENTER) {
-      triangle(mouseX, circle.x, circle.d, circle.y, pmouseX, pmouseY);
-    }
+			fill(circle.c);
+      ellipse(mouseX, mouseY,circle.d,pmouseY);
   }
   } else if (earthquakeMag*100 <=100) {
     background(255, 0, 255);
@@ -80,6 +71,7 @@ function mousePressed() {
   if (osc) {
     osc.amp(0.5, 0.1);
     playing = true;
+		
   }
 }
 function mouseReleased() {
