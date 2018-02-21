@@ -22,6 +22,9 @@ function setup() {
 		 	d: random(3,400),
       c: color(random(360), random(360), random(255))
 }
+		textSize(24);
+		fill(255, 255, 153, 51);
+		text('click here to play', width/3, height/3);
 	}
 }
 
@@ -31,7 +34,7 @@ function playMusic(earthquakes) {
 	print(earthquakeMag*100);
 	osc = new p5.Oscillator();
   osc.setType('triangle');
-  osc.freq(earthquakeMag+a*100);
+  osc.freq(earthquakeMag+a*10);
   osc.amp(0);
   osc.start();
 }
@@ -41,29 +44,19 @@ function draw() {
 	for (var index = 0; index < 100; index = index + 1) {
     // get circle object
     var circle = circles[index];
+		
 
   if (earthquakeMag*100 >=100) {
-   
-  //ellipse(mouseX, circle.d, pmouseX, pmouseY);
 		if (mouseIsPressed) {
 			fill(circle.c);
       ellipse(mouseX, mouseY,circle.d,pmouseY);
-  }
+  	}
   } else if (earthquakeMag*100 <=100) {
     background(255, 0, 255);
 		fill(circle.c);
-	rect(circle.x, mouseY, circle.d, circle.d);
+	rect(circle.x, mouseY, pmouseX, circle.d);
+		}
 	}
-	}
-
-    //circle.d = random(1, 40);
- // }
-  
-
- // if (random() < 0.002) {
-
-   // circle.d = random(1, 40);
-  
 }
 
 function mousePressed() {
@@ -76,10 +69,9 @@ function mousePressed() {
   }
 }
 function mouseReleased() {
-   //playMusic(earthquakes);
   if (osc) {
     osc.amp(0, 0.5);
     playing = false;
   }
 }
-//}
+
