@@ -27,10 +27,11 @@ function setup() {
 
 function playMusic(earthquakes) {
 	var earthquakeMag = earthquakes.features[0].properties.mag;
+	var a = random(10,100);
 	print(earthquakeMag*100);
 	osc = new p5.Oscillator();
   osc.setType('triangle');
-  osc.freq(earthquakeMag*100);
+  osc.freq(earthquakeMag+a*100);
   osc.amp(0);
   osc.start();
 }
